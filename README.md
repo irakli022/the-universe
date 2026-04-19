@@ -52,6 +52,13 @@
             border-radius: var(--radius);
             box-shadow: 0 8px 30px rgba(0,0,0,0.6);
             backdrop-filter: blur(6px);
+            opacity: 0.1;
+        }
+        .content:hover {
+            opacity: 1;
+            transition: opacity 0.4s ease;
+           }
+
         }
 
         h1 { font-size: 2.6rem; color: var(--accent); margin-bottom: 0.6rem; }
