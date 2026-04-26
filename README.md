@@ -20,7 +20,7 @@
         .space-section {
             position: relative;
             height: 100vh;
-            min-height: 560px;
+            padding-top: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -39,7 +39,7 @@
             inset: 0;
             background: rgba(0,0,0,var(--overlay-alpha));
             transition: background 0.3s ease;
-            z-index: 0;
+            z-index: -1;
         }
 
         .content {
@@ -59,13 +59,15 @@
             transition: opacity 0.4s ease;
            }
 
-        }
+        
 
         h1 { font-size: 2.6rem; color: var(--accent); margin-bottom: 0.6rem; }
         p { font-size: 1.05rem; line-height: 1.6; margin-bottom: 0.8rem; color: #e6eef6; }
 
         .facts { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:0.6rem; }
         .fact { background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 10px; font-size:0.95rem; }
+
+        .planet-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: transparent; padding: 5px; display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
 
         .btn {
             display:inline-block;
@@ -79,6 +81,24 @@
             border: none;
             cursor:pointer;
         }
+
+        .nav-btn {
+            display:inline-block;
+            padding: 5px 10px;
+            background: transparent;
+            color: #fff;
+            text-decoration:none;
+            border-radius: 999px;
+            font-weight:700;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            cursor:pointer;
+            text-shadow: 0 0 5px rgba(0,0,0,0.8);
+        }
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
 
         .scroll-hint { display:block; margin-top:12px; color:#cfeffb; opacity:0.9; animation: bounce 2s infinite; font-size:0.95rem; }
 
@@ -106,6 +126,22 @@
         }
         .dot.active { background: var(--accent); box-shadow:0 0 12px rgba(79,195,247,0.28); }
 
+        /* Comet styling */
+        .comet {
+            position: fixed;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .comet-trail {
+            position: fixed;
+            pointer-events: none;
+            z-index: 19;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8), rgba(0,150,255,0.3));
+            box-shadow: 0 0 20px 5px rgba(0,150,255,0.4);
+        }
+
         /* responsive */
         @media (max-width:720px) {
             h1 { font-size: 1.8rem; }
@@ -114,8 +150,29 @@
     </style>
 </head>
 <body>
+    <div class="planet-nav">
+        <a class="nav-btn" href="#mercury">Mercury</a>
+        <a class="nav-btn" href="#venus">Venus</a>
+        <a class="nav-btn" href="#earth">Earth</a>
+        <a class="nav-btn" href="#mars">Mars</a>
+        <a class="nav-btn" href="#jupiter">Jupiter</a>
+        <a class="nav-btn" href="#saturn">Saturn</a>
+        <a class="nav-btn" href="#uranus">Uranus</a>
+        <a class="nav-btn" href="#neptune">Neptune</a>
+        <a class="nav-btn" href="#kuiper-belt">Kuiper Belt</a>
+        <a class="nav-btn" href="#stars">Stars</a>
+        <a class="nav-btn" href="#milkyway">Milkyway</a>
+        <a class="nav-btn" href="#black-hole">Black hole</a>
+        <a class="nav-btn" href="#galaxies">Galaxies</a>
+
+    </div>
 
     <div class="dots" id="navDots" aria-hidden="true"></div>
+
+    <img class="comet" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='cometGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:white;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:cyan;stop-opacity:0.3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='6' fill='white' filter='drop-shadow(0 0 8px white)'/%3E%3Cline x1='50' y1='50' x2='50' y2='0' stroke='url(%23cometGrad)' stroke-width='2' opacity='0.8'/%3E%3C/svg%3E" alt="comet" width="30" height="30">
+    <img class="comet" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='cometGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:white;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:cyan;stop-opacity:0.3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='6' fill='white' filter='drop-shadow(0 0 8px white)'/%3E%3Cline x1='50' y1='50' x2='50' y2='0' stroke='url(%23cometGrad)' stroke-width='2' opacity='0.8'/%3E%3C/svg%3E" alt="comet" width="30" height="30">
+    <img class="comet" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='cometGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:white;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:cyan;stop-opacity:0.3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='6' fill='white' filter='drop-shadow(0 0 8px white)'/%3E%3Cline x1='50' y1='50' x2='50' y2='0' stroke='url(%23cometGrad)' stroke-width='2' opacity='0.8'/%3E%3C/svg%3E" alt="comet" width="30" height="30">
+    
 
     <!-- Sun -->
     <section class="space-section" id="sun" style="background-image: url('https://theplanets.org/123/2022/03/What-Is-the-Sun.jpg');">
@@ -126,6 +183,7 @@
                 <div class="fact">Type: G2V</div>
                 <div class="fact">Radius: ~696,000 km</div>
                 <div class="fact">Age: ~4.6 billion years</div>
+                <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Sun" target="_blank" rel="noopener noreferrer">Sun - Wikipedia</a></div>
             </div>
             <span class="scroll-hint">Scroll down to explore the planets ↓</span>
         </div>
@@ -139,6 +197,7 @@
             <div class="facts">
                 <div class="fact">Orbital period: 88 days</div>
                 <div class="fact">Surface: Rocky, cratered</div>
+                <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Mercury_(planet)" target="_blank" rel="noopener noreferrer">Mercury - Wikipedia</a></div>
             </div>
         </div>
     </section>
@@ -151,6 +210,7 @@
             <div class="facts">
                 <div class="fact">Surface Temp: ~465°C</div>
                 <div class="fact">Atmosphere: Dense CO2</div>
+                <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Venus" target="_blank" rel="noopener noreferrer">Venus - Wikipedia</a></div>
             </div>
         </div>
     </section>
@@ -164,6 +224,7 @@
                 <div class="fact">Moon: 1</div>
                 <div class="fact">Atmosphere: N2/O2</div>
                 <div class="fact">Radius: ~6,371 km</div>
+                <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noopener noreferrer">Earth - Wikipedia</a></div>
             </div>
         </div>
     </section>
@@ -176,6 +237,7 @@
             <div class="facts">
                 <div class="fact">Olympus Mons: Largest volcano</div>
                 <div class="fact">Moons: Phobos & Deimos</div>
+                <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Mars" target="_blank" rel="noopener noreferrer">Mars - Wikipedia</a></div>
             </div>
         </div>
     </section>
@@ -188,6 +250,7 @@
             <div class="facts">
                 <div class="fact">Type: Gas giant</div>
                 <div class="fact">Moons: 79+ (including Ganymede)</div>
+                <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Jupiter" target="_blank" rel="noopener noreferrer">Jupiter - Wikipedia</a></div>
             </div>
         </div>
     </section>
@@ -200,6 +263,7 @@
             <div class="facts">
                 <div class="fact">Rings: Prominent</div>
                 <div class="fact">Major moon: Titan</div>
+                <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Saturn" target="_blank" rel="noopener noreferrer">Saturn - Wikipedia</a></div>
             </div>
         </div>
     </section>
@@ -212,6 +276,7 @@
             <div class="facts">
                 <div class="fact">Axis tilt: ~98°</div>
                 <div class="fact">Color: Blue-green (methane)</div>
+                <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Uranus" target="_blank" rel="noopener noreferrer">Uranus - Wikipedia</a></div>
             </div>
         </div>
     </section>
@@ -224,6 +289,7 @@
             <div class="facts">
                 <div class="fact">Wind speeds: Up to 2,000 km/h</div>
                 <div class="fact">Great Dark Spot: Storm</div>
+                <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Neptune" target="_blank" rel="noopener noreferrer">Neptune - Wikipedia</a></div>
             </div>
         </div>
     </section>
@@ -236,6 +302,7 @@
             <div class="facts">
                 <div class="fact">Pluto: Dwarf planet</div>
                 <div class="fact">Kuiper Belt: Icy objects</div>
+                <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Kuiper_belt" target="_blank" rel="noopener noreferrer">Kuiper Belt - Wikipedia</a></div>
             </div>
         </div>
     </section>
@@ -243,24 +310,29 @@
     <!-- Popular stars -->
     <section class="space-section" id="stars" style="background-image: url('https://preview.redd.it/these-are-the-16-brightest-stars-in-night-sky-v0-bopp27bgpkr31.jpg?width=640&crop=smart&auto=webp&s=dbf1af2276c07deb043b14d7e828ff1f144abf9a');">
         <div class="content">
-            <h1>Popular Stars</h1>
+            <h1>Stars</h1>
             <p>Stars: Facts about stellar formation Stars are massive, luminous spheres of plasma—primarily hydrogen and helium—held together by their own gravity. They produce intense heat and light through nuclear fusion in their cores. Born within nebulae, stars have life cycles lasting millions to billions of years, with colors indicating temperature (blue being hottest, red coolest). </p>
 
             <div class="star-grid">
                 <div class="star-card">
                     <strong>Sirius</strong> <span class="muted">— The brightest star in the night sky; part of Canis Major</span>
+                    <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Sirius" target="_blank" rel="noopener noreferrer">Sirius - Wikipedia</a></div>
                 </div>
                 <div class="star-card">
                     <strong>Betelgeuse</strong> <span class="muted">— A red supergiant in Orion, variable and nearing the end of life</span>
+                    <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Betelgeuse" target="_blank" rel="noopener noreferrer">Betelgeuse - Wikipedia</a></div>
                 </div>
                 <div class="star-card">
                     <strong>Polaris</strong> <span class="muted">— The North Star, near the north celestial pole</span>
+                    <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Polaris" target="_blank" rel="noopener noreferrer">Polaris - Wikipedia</a></div>
                 </div>
                 <div class="star-card">
                     <strong>Vega</strong> <span class="muted">— Bright star in Lyra, reference for photometric systems</span>
+                    <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Vega" target="_blank" rel="noopener noreferrer">Vega - Wikipedia</a></div>
                 </div>
                 <div class="star-card">
                     <strong>Rigel</strong> <span class="muted">— A blue supergiant in Orion</span>
+                    <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Rigel" target="_blank" rel="noopener noreferrer">Rigel - Wikipedia</a></div>
                 </div>
             </div>
         </div>
@@ -274,6 +346,20 @@
             <div class="facts">
                 <div class="fact">Type: Barred spiral</div>
                 <div class="fact">Diameter: ~100,000 light-years</div>
+                              <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Milky_Way" target="_blank" rel="noopener noreferrer">Milky Way - Wikipedia</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blackhole -->
+    <section class="space-section" id="blackhole" style="background-image: url('https://scitechdaily.com/images/Black-Hole-Visualization.jpg');">
+        <div class="content">
+            <h1>Black hole</h1>
+            <p>A black hole is a region in space with gravitational pull so strong that nothing, not even light, can escape, usually formed by the core collapse of a massive star. They are characterized by extreme density, a boundary called the event horizon, and a central singularity, appearing invisible but detected by their effects on surrounding matter. </p>
+            <div class="facts">
+                <div class="fact">A black hole could fit in your pocket</div>
+                <div class="fact">There are likely millions of black holes in our galaxy, and we will probably never know where they are</div>
+                <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Black_hole" target="_blank" rel="noopener noreferrer">Black Hole - Wikipedia</a></div>
             </div>
         </div>
     </section>
@@ -286,6 +372,7 @@
             <div class="facts">
                 <div class="fact">Andromeda: ~2.5 million ly away</div>
                 <div class="fact">Observable Universe: ~2 trillion galaxies</div>
+                <div class="fact">find more here: <a href="https://en.wikipedia.org/wiki/Andromeda_Galaxy" target="_blank" rel="noopener noreferrer">Andromeda Galaxy - Wikipedia</a></div>
             </div>
             <a class="btn" href="#sun" onclick="restart(); return false;">Return to Sun</a>
         </div>
@@ -328,6 +415,61 @@
             document.documentElement.style.setProperty('--overlay-alpha', alpha.toFixed(3));
         }
 
+        // Track cursor position for comets
+        let mouseX = 0, mouseY = 0;
+        let cometX = [50, 100, 200], cometY = [50, 100, 200];
+        const comets = document.querySelectorAll('.comet');
+        const speed = 0.1; // Smoothing factor (0-1, lower = smoother)
+        let frameCount = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function createTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.className = 'comet-trail';
+            const size = Math.random() * 8 + 4; // 4-12px
+            trail.style.width = size + 'px';
+            trail.style.height = size + 'px';
+            trail.style.left = (x - size / 2) + 'px';
+            trail.style.top = (y - size / 2) + 'px';
+            trail.style.opacity = '1';
+            document.body.appendChild(trail);
+
+            // Fade out and remove
+            const duration = 800; // milliseconds
+            const startTime = Date.now();
+            const fadeInterval = setInterval(() => {
+                const elapsed = Date.now() - startTime;
+                const progress = elapsed / duration;
+                trail.style.opacity = Math.max(0, 1 - progress);
+                if (progress >= 1) {
+                    clearInterval(fadeInterval);
+                    trail.remove();
+                }
+            }, 30);
+        }
+
+        function updateCometPosition() {
+            comets.forEach((comet, idx) => {
+                // Smooth follow with easing
+                cometX[idx] += (mouseX - cometX[idx]) * speed;
+                cometY[idx] += (mouseY - cometY[idx]) * speed;
+                
+                comet.style.left = (cometX[idx] - 15) + 'px'; // -15 to center
+                comet.style.top = (cometY[idx] - 15) + 'px';
+
+                // Create trail every 4 frames
+                if (frameCount % 4 === idx) {
+                    createTrail(cometX[idx], cometY[idx]);
+                }
+            });
+            frameCount++;
+            requestAnimationFrame(updateCometPosition);
+        }
+
         window.addEventListener('scroll', () => {
             updateActiveDot();
             updateOverlayByScroll();
@@ -336,6 +478,7 @@
         // init
         updateActiveDot();
         updateOverlayByScroll();
+        updateCometPosition();
 
         // Return-to-top function used by buttons
         function restart() {
